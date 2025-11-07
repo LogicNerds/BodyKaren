@@ -72,7 +72,7 @@ canvas{display:block;width:100%;height:340px}
       </div>
     </div>
   </div>
-  <div class="foot" style="margin-top:8px;opacity:.7">No Karens were hurt in the making of this game. Copyright 2025 Neon Bread Studios.</div>
+  <div class="foot" style="margin-top:8px;opacity:.7">No Karens were hurt in the making of this game. Copyright 2025 Neon Bread Studios.All rights Reserved.</div>
 </div>
 <script>
 const S = (svg) => 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
@@ -99,28 +99,28 @@ const KAREN = S(`<svg xmlns="http://www.w3.org/2000/svg" width="140" height="240
   <rect x="62" y="62" width="16" height="4" rx="2" fill="#333"/>
 </svg>`);
 const ITEMS = [
-  { id:'toaster', name:'Toaster', emoji:'🍞', img:SPRITES.toaster, base:1.1 },
+  { id:'toaster', name:'Toaster', emoji:'🍞', img:SPRITES.toaster, base:0.2 },
   { id:'pan', name:'Pan', emoji:'🍳', img:SPRITES.pan, base:2.2 },
   { id:'bat', name:'Bat', emoji:'⚾', img:SPRITES.bat, base:1.9 },
-  { id:'pot', name:'Plant Pot', emoji:'🪴', img:SPRITES.pot, base:1.5 },
-  { id:'laptop', name:'Laptop', emoji:'💻', img:SPRITES.laptop, base:1.5 },
-  { id:'chair', name:'Chair', emoji:'🪑', img:SPRITES.chair, base:1.3 },
-  { id:'chicken', name:'Rubber Chicken', emoji:'🍗', img:SPRITES.chicken, base:0.5 },
+  { id:'pot', name:'Plant Pot', emoji:'🪴', img:SPRITES.pot, base:1.3 },
+  { id:'laptop', name:'Laptop', emoji:'💻', img:SPRITES.laptop, base:1.4 },
+  { id:'chair', name:'Chair', emoji:'🪑', img:SPRITES.chair, base:1.2 },
+  { id:'chicken', name:'Rubber Chicken', emoji:'🍗', img:SPRITES.chicken, base:0.1 },
   { id:'mug', name:'Mug', emoji:'☕', img:SPRITES.mug, base:1.5 },
   { id:'stapler', name:'Stapler', emoji:'📎', img:SPRITES.stapler, base:1.0 },
-  { id:'shoe', name:'Shoe', emoji:'👟', img:SPRITES.shoe, base:0.5 },
-  { id:'book', name:'Book', emoji:'📚', img:SPRITES.book, base:0.7 },
+  { id:'shoe', name:'Shoe', emoji:'👟', img:SPRITES.shoe, base:0.7 },
+  { id:'book', name:'Book', emoji:'📚', img:SPRITES.book, base:0.9 },
   { id:'sandwich', name:'Sandwich', emoji:'🥪', img:SPRITES.sandwich, base:0.2 },
-  { id:'banana', name:'Banana', emoji:'🍌', img:SPRITES.banana, base:0.3 },
-  { id:'balloon', name:'Balloon', emoji:'🎈', img:SPRITES.balloon, base:0.1 },
+  { id:'banana', name:'Banana', emoji:'🍌', img:SPRITES.banana, base:0.25 },
+  { id:'balloon', name:'Balloon', emoji:'🎈', img:SPRITES.balloon, base:0.01 },
   { id:'pencil', name:'Pencil', emoji:'✏️', img:SPRITES.pencil, base:0.2 },
-  { id:'wrench', name:'Wrench', emoji:'🔧', img:E('🔧'), base:2.1 },
-  { id:'hammer', name:'Hammer', emoji:'🔨', img:E('🔨'), base:2.3 },
+  { id:'wrench', name:'Wrench', emoji:'🔧', img:E('🔧'), base:2.3 },
+  { id:'hammer', name:'Hammer', emoji:'🔨', img:E('🔨'), base:2.5 },
   { id:'pizza', name:'Pizza', emoji:'🍕', img:E('🍕'), base:0.5 },
-  { id:'phone', name:'Phone', emoji:'📱', img:E('📱'), base:1.5 },
-  { id:'bottle', name:'Bottle', emoji:'🍾', img:E('🍾'), base:0.8 }
+  { id:'phone', name:'Phone', emoji:'📱', img:E('📱'), base:1.0 },
+  { id:'bottle', name:'Bottle', emoji:'🍾', img:E('🍾'), base:0.9 }
 ];
-const MULT = { head:2.0, torso:0.9, arm:0.7, leg:0.7, foot:0.5 };
+const MULT = { head:1.5, torso:0.7, arm:0.6, leg:0.5, foot:0.55 };
 const WIN_HP = 15;
 const ROUND_SECS = 30;
 const stage = document.getElementById('stage'), ctx = stage.getContext('2d');
@@ -413,3 +413,4 @@ function draw(){
 </script>
 </body>
 </html>
+
