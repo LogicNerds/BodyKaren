@@ -72,8 +72,9 @@ canvas{display:block;width:100%;height:340px}
       </div>
     </div>
   </div>
-  <div class="foot" style="margin-top:8px;opacity:.7">No Karens were hurt in the making of this game. Copyright 2025 Neon Bread Studios.All rights Reserved.</div>
+ <div class="foot" style="margin-top:8px;opacity:.7">No Karens were hurt in the making of this game. Copyright 2025 Neon Bread Studios.</div>
 </div>
+<audio id="bgMusic" src="fast-battle-intense-8-bit-chiptune-instrumental-378777.mp3" loop></audio>
 <script>
 const S = (svg) => 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 const E = (emoji) => `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><text x="30" y="45" font-size="48" text-anchor="middle">${emoji}</text></svg>`;
@@ -215,8 +216,11 @@ function onUp(e){
     r: (16 + Math.min(14, slot.meta.base*5)) * projSize,
     alive: true, hit: false, rot: Math.random()*Math.PI
   });
-  slot.used = true; slot.btn.classList.remove('active'); slot.btn.classList.add('used'); armed = null;
-  if(!startTime) startTime = performance.now();
+ slot.used = true; slot.btn.classList.remove('active'); slot.btn.classList.add('used'); armed = null;
+  if(!startTime) {
+    startTime = performance.now();
+    document.getElementById('bgMusic').play().catch(()=>{});
+  }
 }
 stage.addEventListener('mousedown',onDown); stage.addEventListener('mousemove',onMove); addEventListener('mouseup',onUp);
 stage.addEventListener('touchstart',onDown,{passive:false}); stage.addEventListener('touchmove',onMove,{passive:false}); stage.addEventListener('touchend',onUp);
@@ -413,4 +417,3 @@ function draw(){
 </script>
 </body>
 </html>
-
