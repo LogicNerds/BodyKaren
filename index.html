@@ -3,63 +3,78 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Object Launch — Take Down the Karen (Sprite Build)</title>
+<title>BodyTheKaren (Sprite Build)</title>
 <style>
-/* 🎨 Spruce Up Look: Subtle color changes & shadows */
+/* 🔥 ULTRA VIBEY GEN Z COLORS */
 :root{
-  --ink:#f8faff; 
-  --line:#ffffff33; 
-  --panel1:#0c1118;
-  --panel2:#121826;
-  --accent:#56b5f5; 
-  --accent2:#ff82c5; 
-  --ok:#27df9d; --warn:#ffd166;
+  --ink:#1a1f33;
+  --line:#8a64ff66;
+  --panel1:#ffffff;
+  --panel2:#f8f5ff;
+  --accent:#ff4081;
+  --accent2:#ab47bc;
+  --ok:#00c853;
+  --warn:#ff6f00;
 }
-html,body{height:100%;margin:0;background:linear-gradient(180deg,#090e14,#0b1426);color:var(--ink);font-family:system-ui,Segoe UI,Arial,sans-serif;}
+html,body{height:100%;margin:0;
+  background:linear-gradient(180deg,#ffd4e5,#e8c5ff,#c5d9ff);
+  color:var(--ink);font-family:system-ui,Segoe UI,Arial,sans-serif;}
 
-/* 🛠️ DEAD SPACE FIX: Reduced top padding on wrap */
-.wrap{max-width:1100px;margin:0 auto;padding:0 14px 10px 14px;} 
+.wrap{max-width:1100px;margin:0 auto;padding:20px 14px 10px 14px;} 
 .hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px} 
-.panel{background:linear-gradient(180deg,var(--panel1),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:10px 14px;box-shadow:0 12px 36px #0008} 
+.panel{background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(240,240,255,0.9));border:2px solid rgba(138,100,255,0.3);border-radius:20px;padding:12px 16px;box-shadow:0 8px 24px rgba(138,100,255,0.15), 0 0 0 1px rgba(255,255,255,0.5) inset;}
 .title{font-weight:900;letter-spacing:.3px}
 .items{display:flex;gap:8px;flex-wrap:wrap}
-.itemBtn{cursor:pointer;border:1px solid var(--line);background:#ffffff10;color:var(--ink);border-radius:12px;padding:8px 10px;display:flex;gap:8px;align-items:center;user-select:none;box-shadow:0 6px 16px #0006;transition:transform 0.1s; font-size: 14px;}
-.itemBtn:hover{transform:translateY(-1px);background:#ffffff18;}
-.itemBtn .emoji{font-size: 20px;} 
-.itemBtn.active{outline:2px solid var(--accent);box-shadow:0 0 10px var(--accent), 0 6px 16px #0008;} 
-.itemBtn.used{opacity:.3;filter:grayscale(1);cursor:not-allowed;box-shadow:none;}
+.itemBtn{cursor:pointer;border:2px solid rgba(138,100,255,0.3);
+  background:linear-gradient(135deg,rgba(255,255,255,0.9),rgba(250,245,255,0.85)); 
+  color:var(--ink);border-radius:16px;padding:10px 12px;display:flex;gap:8px;align-items:center;user-select:none;box-shadow:0 4px 12px rgba(138,100,255,0.12);transition:all 0.2s; font-size: 14px;font-weight:600;}
+.itemBtn:hover{transform:translateY(-2px) scale(1.02);background:linear-gradient(135deg,#fff,rgba(255,250,255,0.95));box-shadow:0 6px 20px rgba(138,100,255,0.25);}
+.itemBtn .emoji{font-size: 22px;} 
+.itemBtn.active{outline:3px solid var(--accent);background:linear-gradient(135deg,rgba(255,100,200,0.15),rgba(138,100,255,0.15));box-shadow:0 0 20px var(--accent), 0 6px 20px rgba(255,64,129,0.4);transform:scale(1.05);} 
+.itemBtn.used{opacity:.5;filter:grayscale(0.8);cursor:not-allowed;box-shadow:none;transform:scale(0.95);}
 .foot{opacity:.8;font-size:12px;margin-top:6px}
 
-.stageWrap{position:relative;border-radius:18px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(1200px 600px at 80% 0,#223554,#121725);box-shadow:0 12px 40px #0008;} 
+.stageWrap{position:relative;border-radius:24px;border:3px solid rgba(138,100,255,0.4);overflow:hidden;
+  background:linear-gradient(180deg, #a8e6ff 0%, #dbb7ff 50%, #ffc7e8 100%);
+  box-shadow:0 12px 40px rgba(138,100,255,0.3), 0 0 0 1px rgba(255,255,255,0.5) inset;} 
 
-/* 🛠️ ARENA SPACE FIX: Increased canvas height */
-canvas{display:block;width:100%;height:700px} 
+canvas{display:block;width:100%;height:340px} 
 
-.overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(3px)}
-.overlay .box{background:#111622;border:1px solid var(--line);border-radius:16px;padding:18px 20px;max-width:560px;text-align:center;box-shadow:0 18px 50px #000a}
+.overlay{
+    position:absolute;
+    inset:0;
+    display:none; 
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.3);
+    backdrop-filter:blur(2px)
+}
+.overlay .box{background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(248,245,255,0.98));border:3px solid rgba(138,100,255,0.5);border-radius:24px;padding:24px 28px;max-width:560px;text-align:center;box-shadow:0 20px 60px rgba(138,100,255,0.4), 0 0 0 1px rgba(255,255,255,0.8) inset;}
 .overlay h2{margin:0 0 8px}
 .overlay .row{display:flex;gap:10px;justify-content:center;margin-top:10px}
-.btn{cursor:pointer;border:0;border-radius:12px;padding:10px 14px;font-weight:900;transition:transform 0.1s;}
-.btn:hover{transform:translateY(-1px);}
-.btnPrimary{background:linear-gradient(135deg,#56b5f5,#237eff);color:#001220} 
-.btnGhost{background:#ffffff16;border:1px solid var(--line);color:var(--ink)}
+.btn{cursor:pointer;border:0;border-radius:16px;padding:12px 20px;font-weight:800;transition:all 0.2s;font-size:15px;}
+.btn:hover{transform:translateY(-2px) scale(1.03);}
+.btnPrimary{background:linear-gradient(135deg,#ff4081,#ab47bc);color:#fff;box-shadow:0 6px 20px rgba(255,64,129,0.4);}
+.btnPrimary:hover{box-shadow:0 8px 28px rgba(255,64,129,0.6);}
+.btnGhost{background:rgba(255,255,255,0.9);border:2px solid rgba(138,100,255,0.3);color:var(--ink);box-shadow:0 4px 12px rgba(138,100,255,0.15);}
+.btnGhost:hover{background:#fff;box-shadow:0 6px 20px rgba(138,100,255,0.25);}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="hud">
     <div class="panel">
-      <div class="title">Object Launch — Take Down the Karen</div>
-      <div class="foot">Drag the band, aim, release. 30s to make her <b>take the L</b>.</div>
+      <div class="title">Body The Karen</div>
+      <div class="foot">Pick an item, pull back the slingshot, and yeeeeet <b>before she finds the manager!</b>.</div>
     </div>
     <div class="panel">
       <div class="items" id="items"></div>
-      <div class="foot">One of each. Used items gray out.</div>
+      <div class="foot">Choose your weapon wisely....there's only one of each!</div>
     </div>
   </div>
 
   <div class="stageWrap">
-    <canvas id="stage" width="1100" height="700"></canvas>
+    <canvas id="stage" width="1100" height="340"></canvas>
     <div class="overlay" id="ovl">
       <div class="box">
         <h2 id="ovlTitle">Mission Complete</h2>
@@ -71,7 +86,7 @@ canvas{display:block;width:100%;height:700px}
       </div>
     </div>
   </div>
-  <div class="foot" style="margin-top:8px;opacity:.7">Cartoon NPC only. Bonks, not bruises.</div>
+  <div class="foot" style="margin-top:8px;opacity:.7">No Karens were hurt in the making of this game.</div>
 </div>
 
 <script>
@@ -107,15 +122,25 @@ const KAREN = S(`<svg xmlns="http://www.w3.org/2000/svg" width="140" height="240
     <linearGradient id="cl" x1="0" x2="1">
       <stop stop-color="#fefefe"/><stop offset="1" stop-color="#e3e6ee"/>
     </linearGradient>
+    <linearGradient id="pants" x1="0" x2="0" y1="0" y2="1">
+      <stop stop-color="#4a90e2"/><stop offset="1" stop-color="#357abd"/>
+    </linearGradient>
   </defs>
-  <rect x="52" y="150" width="18" height="70" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
-  <rect x="78" y="150" width="18" height="70" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
+  <!-- Legs with pants -->
+  <rect x="52" y="150" width="18" height="70" rx="8" fill="url(#pants)" stroke="#2a5a8d" stroke-width="3"/>
+  <rect x="78" y="150" width="18" height="70" rx="8" fill="url(#pants)" stroke="#2a5a8d" stroke-width="3"/>
+  <!-- Body/Dress -->
   <path d="M40 80 L100 80 L120 150 L20 150 Z" fill="url(#cl)" stroke="#a9b3c4" stroke-width="3"/>
+  <!-- Arms -->
   <rect x="18" y="90" width="18" height="60" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
   <rect x="104" y="90" width="18" height="60" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
+  <!-- Purse -->
   <rect x="118" y="112" width="10" height="18" rx="2" fill="#333"/>
+  <!-- Head -->
   <circle cx="70" cy="56" r="22" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
+  <!-- Eyes -->
   <circle cx="62" cy="52" r="3" fill="#333"/><circle cx="78" cy="52" r="3" fill="#333"/>
+  <!-- Mouth -->
   <rect x="62" y="62" width="16" height="4" rx="2" fill="#333"/>
 </svg>`);
 
@@ -137,7 +162,12 @@ const ITEMS = [
   { id:'sandwich',   name:'Sandwich',   emoji:'🥪', img:SPRITES.sandwich,   base:0.6 },
   { id:'banana',     name:'Banana',     emoji:'🍌', img:SPRITES.banana,     base:0.5 },
   { id:'balloon',    name:'Balloon',    emoji:'🎈', img:SPRITES.balloon,    base:0.4 },
-  { id:'pencil',     name:'Pencil',     emoji:'✏️', img:SPRITES.pencil,     base:0.35 }
+  { id:'pencil',     name:'Pencil',     emoji:'✏️', img:SPRITES.pencil,     base:0.35 },
+  { id:'wrench',     name:'Wrench',     emoji:'🔧', img:E('🔧'),            base:1.6 },
+  { id:'hammer',     name:'Hammer',     emoji:'🔨', img:E('🔨'),            base:1.5 },
+  { id:'pizza',      name:'Pizza',      emoji:'🍕', img:E('🍕'),            base:0.7 },
+  { id:'phone',      name:'Phone',      emoji:'📱', img:E('📱'),            base:1.3 },
+  { id:'bottle',     name:'Bottle',     emoji:'🍾', img:E('🍾'),            base:0.8 }
 ];
 
 const MULT = { head:1.8, torso:1.2, arm:0.9, leg:0.8, foot:0.5 };
@@ -158,7 +188,7 @@ document.getElementById('share').onclick = () => {
 
 /* Build inventory (one of each) */
 let armed = null;
-let inventory = new Map(); // id -> {used:bool, img:Image, meta:item, btn:HTMLElement}
+let inventory = new Map();
 function buildInventory(){
   itemsEl.innerHTML = '';
   inventory.clear();
@@ -182,7 +212,7 @@ buildInventory();
 /* ================================
     Canvas sizing
 ==================================*/
-let W, H; const GROUND = () => H-40;
+let W, H; const GROUND = () => H-30;
 function resize(){
   const r = stage.getBoundingClientRect();
   W = stage.width = Math.floor(r.width);
@@ -194,11 +224,22 @@ addEventListener('resize', resize); resize();
     Game state & physics
 ==================================*/
 const GRAV = 1600;
-// 🛠️ ARENA SPACE FIX: Slingshot position moved up (from -100 to -200) relative to ground
-const SLING = { x: 140, y: () => GROUND()-200, maxPull: 230, bandTension: 0.04 }; 
+const SLING = { x: 140, y: () => GROUND()-60, maxPull: 230, bandTension: 0.04 }; 
 
-const kar = { // Karen
-  x: () => W-210, y: () => GROUND()-220, w: 140, h: 240, 
+const kar = {
+  startX: () => W/2 - 70,
+  endX: () => W - 150,
+  x: () => {
+    if(!startTime || over) {
+      return kar.startX();
+    }
+    const elapsed = (performance.now() - startTime) / 1000;
+    const progress = Math.min(1, elapsed / ROUND_SECS);
+    return kar.startX() + (kar.endX() - kar.startX()) * progress;
+  },
+  y: () => GROUND()-220, 
+  w: 140, 
+  h: 240, 
   img: (()=>{ const i=new Image(); i.src=KAREN; return i; })()
 };
 
@@ -232,27 +273,18 @@ function onUp(e){
   
   if(pullMag < 10) return;
 
-  // 🚀 NEW PHYSICS: Calculate power based on time held (additive)
   const holdDurationSeconds = Math.max(0, (performance.now() - dragTimeStart) / 1000);
-  const cappedDuration = Math.min(5, holdDurationSeconds); // Cap at 5 seconds
+  const cappedDuration = Math.min(5, holdDurationSeconds); 
   
-  // Calculate power using an exponential function of time (3^t) to simulate tripling
-  // We normalize this to a range between a minimum launch speed and a max added speed.
   const MIN_SPEED = 1000;
-  const MAX_ADDED_SPEED = 10000; // Increased max launch potential
+  const MAX_ADDED_SPEED = 10000; 
   
-  // Calculate the time-based multiplier (0 at 0s, 1 at 5s) using 3^t scale:
-  // We use the cappedDuration and map it from 3^0 to 3^5 (1 to 243)
   const timePowerFactor = (Math.pow(3, cappedDuration) - 1) / (Math.pow(3, 5) - 1);
-  
-  // The added speed scales by time (exponentially)
   const addedSpeed = MAX_ADDED_SPEED * timePowerFactor; 
   
-  // Incorporate distance pulled (capped by maxPull) for aim sensitivity
   const cappedPullMag = Math.min(SLING.maxPull, pullMag);
   const distanceFactor = cappedPullMag / SLING.maxPull;
   
-  // Final speed is minimum speed plus the distance-scaled power from holding time
   const speed = MIN_SPEED + (addedSpeed * distanceFactor);
 
   const angle = Math.atan2(pullY, pullX);
@@ -266,7 +298,6 @@ function onUp(e){
     alive: true, hit: false, rot: Math.random()*Math.PI
   });
 
-  // consume the item
   slot.used = true; slot.btn.classList.remove('active'); slot.btn.classList.add('used'); armed = null;
 
   if(!startTime){ startTime = performance.now(); }
@@ -278,8 +309,7 @@ stage.addEventListener('touchstart',onDown,{passive:false}); stage.addEventListe
     Collision
 ==================================*/
 function karHitboxes(){
-  const x = kar.x(), y = kar.y();
-  return {
+  const x = kar.x(), y = kar.y();  return {
     head: {x:x+50, y:y+18, w:40, h:40, mult:MULT.head},
     torso:{x:x+28, y:y+60, w:84, h:90, mult:MULT.torso},
     armL: {x:x+12, y:y+72, w:20, h:70, mult:MULT.arm},
@@ -313,13 +343,11 @@ function tick(){
 }
 
 function update(dt){
-  // timer
   if(startTime && !over){
     const rem = Math.max(0, ROUND_SECS - (performance.now()-startTime)/1000);
     if(rem <= 0){ finish(false); return; }
   }
 
-  // physics
   for(const p of projectiles){
     if(!p.alive) continue;
     p.vy += GRAV * dt;
@@ -327,18 +355,15 @@ function update(dt){
     p.y  += p.vy * dt;
     p.rot += 2*dt;
 
-    // floor bounce
     if(p.y + p.r > GROUND()){
       p.y = GROUND() - p.r;
       p.vy *= -0.38;
       p.vx *=  0.72;
       if(Math.abs(p.vy) < 60) p.alive = false;
     }
-    // walls
     if(p.x < -80 || p.x > W+80 || p.y < -120) p.alive=false;
 
-    // collision with Karen
-    if(!p.hit && p.x > W-280){
+   if(!p.hit && p.x > 200){
       const boxes = karHitboxes();
       const hit = circleHitsBox(p.x,p.y,p.r,boxes.head) || circleHitsBox(p.x,p.y,p.r,boxes.torso) ||
                    circleHitsBox(p.x,p.y,p.r,boxes.armL) || circleHitsBox(p.x,p.y,p.r,boxes.armR) ||
@@ -349,7 +374,6 @@ function update(dt){
         const variance = 0.9 + Math.random()*0.2;
         const gain = +(p.base * hit.mult * variance).toFixed(2);
         addHP(gain, p.x, p.y); 
-        // dampen
         p.vx *= 0.6; p.vy *= 0.6;
       }
     }
@@ -359,17 +383,14 @@ function update(dt){
 
 function addHP(g, x, y){
   hp = Math.min(WIN_HP, +(hp + g).toFixed(2));
-  // floating text near hit
-  ctx.save();
-  // quick DOM floaty near canvas:
   const fl = document.createElement('div');
   fl.textContent = '+'+g.toFixed(2);
   const r = stage.getBoundingClientRect();
   fl.style.position='fixed'; fl.style.left=(r.left+x)+'px'; fl.style.top=(r.top+y)+'px';
   fl.style.transform='translate(-50%,-50%)'; fl.style.fontWeight='900';
-  fl.style.color = g>=2 ? 'var(--accent2)' : (g>=1 ? 'var(--warn)' : 'var(--accent)');
-  fl.style.textShadow='0 2px 0 #000a'; fl.style.pointerEvents='none'; fl.style.zIndex='100';
-  fl.style.transition='all .7s ease-out'; fl.style.opacity='1';
+  fl.style.color = g>=2 ? '#00c853' : (g>=1 ? '#ff6f00' : '#ff4081');
+  fl.style.textShadow='0 2px 4px rgba(0,0,0,0.3)'; fl.style.pointerEvents='none'; fl.style.zIndex='100';
+  fl.style.transition='all .7s ease-out'; fl.style.opacity='1'; fl.style.fontSize='18px';
   document.body.appendChild(fl);
   requestAnimationFrame(()=>{ fl.style.opacity='0'; fl.style.top=(r.top+y-80)+'px'; });
   setTimeout(()=>fl.remove(), 800);
@@ -380,10 +401,19 @@ function addHP(g, x, y){
 function finish(win){
   over = true;
   ovl.style.display='flex';
-  ovlTitle.textContent = win ? 'Mission Complete' : 'Time’s Up';
-  ovlMsg.innerHTML = win
-    ? `Karen <b>took the L</b> in <b>${elapsedText()}</b>.`
-    : `You reached <b>${Math.floor(hp)}/${WIN_HP} HP</b>. Try heavier items or aim for the head.`;
+  
+  if(win) {
+    ovlTitle.textContent = 'Mission Complete';
+    ovlMsg.innerHTML = `Karen <b>took the L</b> in <b>${elapsedText()}</b>.`;
+  } else {
+     if (hp >= WIN_HP) {
+        ovlTitle.textContent = 'Mission Complete';
+        ovlMsg.innerHTML = `Karen <b>took the L</b> just as time expired! (${elapsedText()})`;
+     } else {
+        ovlTitle.textContent = 'Karen Found the Manager! 😠';
+        ovlMsg.innerHTML = `Time ran out. You only reached <b>${Math.floor(hp)}/${WIN_HP} HP</b>. Try harder next time!`;
+     }
+  }
 }
 
 function resetGame(){
@@ -399,64 +429,106 @@ function resetGame(){
     Rendering
 ==================================*/
 function draw(){
-  // bg
   ctx.clearRect(0,0,W,H);
+  
   // ground
-  ctx.fillStyle = '#222a36';
+  ctx.fillStyle = '#a8d5ba'; 
   ctx.fillRect(0,GROUND(),W,H-GROUND());
-  ctx.fillStyle = '#2b3544';
-  for(let i=0;i<W;i+=32) ctx.fillRect(i,GROUND(),16,6);
+  ctx.fillStyle = '#8bc9a3'; 
+  for(let i=0;i<W;i+=28) ctx.fillRect(i,GROUND(),14,5);
 
-  // slingshot band + post
+  // slingshot Y-frame
   const slingY = SLING.y();
   ctx.save();
-  // posts
-  ctx.fillStyle='#2e394b';
-  // 🛠️ Slingshot posts are now taller to match the new position
-  ctx.fillRect(SLING.x-6, slingY-120, 12, 120); 
-  ctx.fillRect(SLING.x+32-6, slingY-120, 12, 120); 
-  // band
+  
+  ctx.fillStyle='#8b5a3c';
+  ctx.strokeStyle='#5d3a1a';
+  ctx.lineWidth=2;
+  
+  // Main handle
+  ctx.fillRect(SLING.x+12, GROUND()-65, 8, 70);
+  ctx.strokeRect(SLING.x+12, GROUND()-65, 8, 70);
+  
+  // Left fork
+  ctx.beginPath();
+  ctx.moveTo(SLING.x+16, GROUND()-65);
+  ctx.lineTo(SLING.x+4, GROUND()-90);
+  ctx.lineTo(SLING.x+10, GROUND()-92);
+  ctx.lineTo(SLING.x+18, GROUND()-68);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  
+  // Right fork
+  ctx.beginPath();
+  ctx.moveTo(SLING.x+16, GROUND()-65);
+  ctx.lineTo(SLING.x+28, GROUND()-90);
+  ctx.lineTo(SLING.x+22, GROUND()-92);
+  ctx.lineTo(SLING.x+14, GROUND()-68);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  
+  // Fork tips
+  ctx.fillStyle='#5d3a1a';
+  ctx.beginPath();
+  ctx.arc(SLING.x+7, GROUND()-91, 4, 0, Math.PI*2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(SLING.x+25, GROUND()-91, 4, 0, Math.PI*2);
+  ctx.fill();
+  
+  // Elastic band
   if(dragging){
-    ctx.strokeStyle = 'var(--accent2)'; 
-    ctx.lineWidth = 6;
+    ctx.strokeStyle = '#ff4081'; 
+    ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.moveTo(SLING.x, slingY-44);
+    ctx.moveTo(SLING.x+7, GROUND()-91);
     ctx.lineTo(dragNow.x, dragNow.y);
-    ctx.lineTo(SLING.x+32, slingY-44);
+    ctx.lineTo(SLING.x+25, GROUND()-91);
     ctx.stroke();
+    
+    ctx.fillStyle='#8d6e63';
+    ctx.fillRect(dragNow.x-8, dragNow.y-6, 16, 12);
+    ctx.strokeStyle='#5d4037';
+    ctx.lineWidth=2;
+    ctx.strokeRect(dragNow.x-8, dragNow.y-6, 16, 12);
   } else {
-    ctx.strokeStyle = '#ffa8d0';
-    ctx.lineWidth = 6;
+    ctx.strokeStyle = '#ff4081'; 
+    ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.moveTo(SLING.x, slingY-44);
-    ctx.lineTo(SLING.x+16, slingY-52);
-    ctx.lineTo(SLING.x+32, slingY-44);
+    ctx.moveTo(SLING.x+7, GROUND()-91);
+    ctx.lineTo(SLING.x+16, GROUND()-88);
+    ctx.lineTo(SLING.x+25, GROUND()-91);
     ctx.stroke();
+    
+    ctx.fillStyle='#8d6e63';
+    ctx.fillRect(SLING.x+8, GROUND()-93, 16, 10);
+    ctx.strokeStyle='#5d4037';
+    ctx.lineWidth=2;
+    ctx.strokeRect(SLING.x+8, GROUND()-93, 16, 10);
   }
-  // pouch
-  ctx.fillStyle='#333';
-  ctx.fillRect(SLING.x+8, slingY-52, 16, 10);
   ctx.restore();
 
-  // Karen sprite
-  ctx.drawImage(kar.img, kar.x(), kar.y(), kar.w, kar.h);
+  // Karen sprite 
+  const karenX = kar.x();
+  ctx.drawImage(kar.img, karenX, kar.y(), kar.w, kar.h);
 
-  // Karen HUD (HP bar + timer) just above head
-  const hudX = kar.x()+20, hudY = kar.y()-18;
-  // HP bar frame
+  // Karen HUD
+  const hudX = karenX+20, hudY = kar.y()-18;
   ctx.save();
-  ctx.fillStyle = 'rgba(0,0,0,.55)';
+  ctx.fillStyle = 'rgba(0,0,0,.2)'; 
   ctx.fillRect(hudX-2, hudY-10, 120+4, 10+4);
-  // fill
+  
   const pct = hp/WIN_HP;
-  ctx.fillStyle = pct>=1 ? 'var(--ok)' : (pct>0.6 ? 'var(--warn)' : 'var(--accent)');
+  ctx.fillStyle = pct>=1 ? '#00c853' : (pct>0.6 ? '#ff6f00' : '#ff4081');
   ctx.fillRect(hudX, hudY-8, Math.max(0,120*pct), 8);
-  // border
-  ctx.strokeStyle = 'var(--line)'; 
+  
+  ctx.strokeStyle = 'rgba(138,100,255,0.6)'; 
   ctx.strokeRect(hudX, hudY-8, 120, 8);
-  // timer text
+  
   let tLeft = startTime ? Math.max(0, ROUND_SECS - (performance.now()-startTime)/1000) : ROUND_SECS;
-  ctx.fillStyle = 'var(--ink)'; 
+  ctx.fillStyle = '#1a1f33'; 
   ctx.font = 'bold 12px system-ui, sans-serif';
   ctx.fillText((tLeft).toFixed(1)+'s', hudX+126, hudY);
   ctx.restore();
