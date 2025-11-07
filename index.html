@@ -196,7 +196,7 @@ function buildInventory(){
     const img = new Image(); img.src = it.img;
     const btn = document.createElement('button');
     btn.className = 'itemBtn'; 
-    btn.innerHTML = `<span class="emoji">${it.emoji}</span>${it.name}`;
+   btn.innerHTML = `<span class="emoji">${it.emoji}</span>`;
     btn.onclick = ()=>{
       if(btn.classList.contains('used')) return;
       armed = it.id;
