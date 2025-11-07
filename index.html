@@ -1,54 +1,38 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BodyTheKaren (Sprite Build)</title>
+<title>BodyTheKaren</title>
 <style>
-/* 🔥 ULTRA VIBEY GEN Z COLORS */
-:root{
-  --ink:#1a1f33;
-  --line:#8a64ff66;
-  --panel1:#ffffff;
-  --panel2:#f8f5ff;
-  --accent:#ff4081;
-  --accent2:#ab47bc;
-  --ok:#00c853;
-  --warn:#ff6f00;
-}
-html,body{height:100%;margin:0;
-  background:linear-gradient(180deg,#ffd4e5,#e8c5ff,#c5d9ff);
-  color:var(--ink);font-family:system-ui,Segoe UI,Arial,sans-serif;}
-
+:root{--ink:#1a1f33;--line:#8a64ff66;--panel1:#ffffff;--panel2:#f8f5ff;--accent:#ff4081;--accent2:#ab47bc;--ok:#00c853;--warn:#ff6f00;}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,#ffd4e5,#e8c5ff,#c5d9ff);color:var(--ink);font-family:system-ui,Segoe UI,Arial,sans-serif;}
 .wrap{max-width:1100px;margin:0 auto;padding:20px 14px 10px 14px;} 
 .hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px} 
 .panel{background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(240,240,255,0.9));border:2px solid rgba(138,100,255,0.3);border-radius:20px;padding:12px 16px;box-shadow:0 8px 24px rgba(138,100,255,0.15), 0 0 0 1px rgba(255,255,255,0.5) inset;}
 .title{font-weight:900;letter-spacing:.3px}
 .items{display:flex;gap:8px;flex-wrap:wrap}
-.itemBtn{cursor:pointer;border:2px solid rgba(138,100,255,0.3);
-  background:linear-gradient(135deg,rgba(255,255,255,0.9),rgba(250,245,255,0.85)); 
-  color:var(--ink);border-radius:16px;padding:10px 12px;display:flex;gap:8px;align-items:center;user-select:none;box-shadow:0 4px 12px rgba(138,100,255,0.12);transition:all 0.2s; font-size: 14px;font-weight:600;}
+.itemBtn{cursor:pointer;border:2px solid rgba(138,100,255,0.3);background:linear-gradient(135deg,rgba(255,255,255,0.9),rgba(250,245,255,0.85));color:var(--ink);border-radius:16px;padding:10px 12px;display:flex;gap:8px;align-items:center;user-select:none;box-shadow:0 4px 12px rgba(138,100,255,0.12);transition:all 0.2s;font-size:14px;font-weight:600;}
 .itemBtn:hover{transform:translateY(-2px) scale(1.02);background:linear-gradient(135deg,#fff,rgba(255,250,255,0.95));box-shadow:0 6px 20px rgba(138,100,255,0.25);}
-.itemBtn .emoji{font-size: 22px;} 
+.itemBtn .emoji{font-size:22px;} 
 .itemBtn.active{outline:3px solid var(--accent);background:linear-gradient(135deg,rgba(255,100,200,0.15),rgba(138,100,255,0.15));box-shadow:0 0 20px var(--accent), 0 6px 20px rgba(255,64,129,0.4);transform:scale(1.05);} 
 .itemBtn.used{opacity:.5;filter:grayscale(0.8);cursor:not-allowed;box-shadow:none;transform:scale(0.95);}
 .foot{opacity:.8;font-size:12px;margin-top:6px}
-
-.stageWrap{position:relative;border-radius:24px;border:3px solid rgba(138,100,255,0.4);overflow:hidden;
-  background:linear-gradient(180deg, #a8e6ff 0%, #dbb7ff 50%, #ffc7e8 100%);
-  box-shadow:0 12px 40px rgba(138,100,255,0.3), 0 0 0 1px rgba(255,255,255,0.5) inset;} 
-
-canvas{display:block;width:100%;height:340px} 
-
-.overlay{
-    position:absolute;
-    inset:0;
-    display:none; 
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.3);
-    backdrop-filter:blur(2px)
+.stageWrap{position:relative;border-radius:24px;border:3px solid rgba(138,100,255,0.4);overflow:hidden;background:linear-gradient(180deg, #a8e6ff 0%, #dbb7ff 50%, #ffc7e8 100%);box-shadow:0 12px 40px rgba(138,100,255,0.3), 0 0 0 1px rgba(255,255,255,0.5) inset;} 
+canvas{display:block;width:100%;height:340px}
+@media (max-width: 768px) {
+  .wrap{padding:10px 8px;}
+  .hud{gap:8px;}
+  .panel{padding:8px 12px;border-radius:16px;}
+  .title{font-size:18px;}
+  .items{gap:6px;}
+  .itemBtn{padding:8px;border-radius:12px;}
+  .itemBtn .emoji{font-size:28px;}
+  canvas{height:400px;}
+  .foot{font-size:10px;}
 }
+.overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.3);backdrop-filter:blur(2px)}
 .overlay .box{background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(248,245,255,0.98));border:3px solid rgba(138,100,255,0.5);border-radius:24px;padding:24px 28px;max-width:560px;text-align:center;box-shadow:0 20px 60px rgba(138,100,255,0.4), 0 0 0 1px rgba(255,255,255,0.8) inset;}
 .overlay h2{margin:0 0 8px}
 .overlay .row{display:flex;gap:10px;justify-content:center;margin-top:10px}
@@ -58,6 +42,10 @@ canvas{display:block;width:100%;height:340px}
 .btnPrimary:hover{box-shadow:0 8px 28px rgba(255,64,129,0.6);}
 .btnGhost{background:rgba(255,255,255,0.9);border:2px solid rgba(138,100,255,0.3);color:var(--ink);box-shadow:0 4px 12px rgba(138,100,255,0.15);}
 .btnGhost:hover{background:#fff;box-shadow:0 6px 20px rgba(138,100,255,0.25);}
+@media (max-width: 768px) {
+  .overlay .box{padding:20px;margin:0 10px;}
+  .btn{padding:10px 16px;font-size:14px;}
+}
 </style>
 </head>
 <body>
@@ -65,14 +53,13 @@ canvas{display:block;width:100%;height:340px}
   <div class="hud">
     <div class="panel">
       <div class="title">Body The Karen</div>
-      <div class="foot">Pick an item, pull back the slingshot, and yeeeeet <b>before she finds the manager!</b>.</div>
+      <div class="foot">Pick an item, pull back the slingshot, and yeeeeet <b>before she finds the manager!</b></div>
     </div>
     <div class="panel">
       <div class="items" id="items"></div>
       <div class="foot">Choose your weapon wisely....there's only one of each!</div>
     </div>
   </div>
-
   <div class="stageWrap">
     <canvas id="stage" width="1100" height="340"></canvas>
     <div class="overlay" id="ovl">
@@ -81,114 +68,66 @@ canvas{display:block;width:100%;height:340px}
         <div id="ovlMsg">Karen got folded in 18.2s.</div>
         <div class="row">
           <button class="btn btnPrimary" id="again">Play again</button>
-          <button class="btn btnGhost" id="share">Copy score</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="foot" style="margin-top:8px;opacity:.7">No Karens were hurt in the making of this game. Copyright 2025 Neon Bread Studios. All rights reserved."Body the Karen" and Neon Bread Studios are the intellectual property of Neon Bread Studios, LLC</div>
+  <div class="foot" style="margin-top:8px;opacity:.7">No Karens were hurt in the making of this game. Copyright 2025 Neon Bread Studios.</div>
 </div>
-
 <script>
-/* ================================
-    SPRITES (embedded SVG → dataURL)
-==================================*/
 const S = (svg) => 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 const E = (emoji) => `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><text x="30" y="45" font-size="48" text-anchor="middle">${emoji}</text></svg>`;
-
 const SPRITES = {
-  toaster: E(`🍞`), 
-  pan: E(`🍳`), 
-  bat: E(`⚾`), 
-  pot: E(`🪴`), 
-  laptop: E(`💻`), 
-  chair: E(`🪑`), 
-  chicken: E(`🍗`), 
-  mug: E(`☕`), 
-  stapler: E(`📎`), 
-  shoe: E(`👟`), 
-  book: E(`📚`), 
-  sandwich: E(`🥪`), 
-  banana: E(`🍌`), 
-  balloon: E(`🎈`), 
-  pencil: E(`✏️`) 
+  toaster: E(`🍞`), pan: E(`🍳`), bat: E(`⚾`), pot: E(`🪴`), laptop: E(`💻`), chair: E(`🪑`), 
+  chicken: E(`🍗`), mug: E(`☕`), stapler: E(`📎`), shoe: E(`👟`), book: E(`📚`), 
+  sandwich: E(`🥪`), banana: E(`🍌`), balloon: E(`🎈`), pencil: E(`✏️`) 
 };
-
 const KAREN = S(`<svg xmlns="http://www.w3.org/2000/svg" width="140" height="240" viewBox="0 0 140 240">
   <defs>
-    <linearGradient id="sk" x1="0" x2="0" y1="0" y2="1">
-      <stop stop-color="#ffe0a8"/><stop offset="1" stop-color="#ffc98c"/>
-    </linearGradient>
-    <linearGradient id="cl" x1="0" x2="1">
-      <stop stop-color="#fefefe"/><stop offset="1" stop-color="#e3e6ee"/>
-    </linearGradient>
-    <linearGradient id="pants" x1="0" x2="0" y1="0" y2="1">
-      <stop stop-color="#4a90e2"/><stop offset="1" stop-color="#357abd"/>
-    </linearGradient>
+    <linearGradient id="sk" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#ffe0a8"/><stop offset="1" stop-color="#ffc98c"/></linearGradient>
+    <linearGradient id="cl" x1="0" x2="1"><stop stop-color="#fefefe"/><stop offset="1" stop-color="#e3e6ee"/></linearGradient>
+    <linearGradient id="pants" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#4a90e2"/><stop offset="1" stop-color="#357abd"/></linearGradient>
   </defs>
-  <!-- Legs with pants -->
   <rect x="52" y="150" width="18" height="70" rx="8" fill="url(#pants)" stroke="#2a5a8d" stroke-width="3"/>
   <rect x="78" y="150" width="18" height="70" rx="8" fill="url(#pants)" stroke="#2a5a8d" stroke-width="3"/>
-  <!-- Body/Dress -->
   <path d="M40 80 L100 80 L120 150 L20 150 Z" fill="url(#cl)" stroke="#a9b3c4" stroke-width="3"/>
-  <!-- Arms -->
   <rect x="18" y="90" width="18" height="60" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
   <rect x="104" y="90" width="18" height="60" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
-  <!-- Purse -->
   <rect x="118" y="112" width="10" height="18" rx="2" fill="#333"/>
-  <!-- Head -->
   <circle cx="70" cy="56" r="22" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
-  <!-- Eyes -->
   <circle cx="62" cy="52" r="3" fill="#333"/><circle cx="78" cy="52" r="3" fill="#333"/>
-  <!-- Mouth -->
   <rect x="62" y="62" width="16" height="4" rx="2" fill="#333"/>
 </svg>`);
-
-/* ================================
-    CONFIG
-==================================*/
 const ITEMS = [
-  { id:'toaster',    name:'Toaster',    emoji:'🍞', img:SPRITES.toaster,    base:1.1 },
-  { id:'pan',        name:'Pan',        emoji:'🍳', img:SPRITES.pan,        base:2.2 },
-  { id:'bat',        name:'Bat',        emoji:'⚾', img:SPRITES.bat,        base:1.9 },
-  { id:'pot',        name:'Plant Pot',  emoji:'🪴', img:SPRITES.pot,        base:1.5 },
-  { id:'laptop',     name:'Laptop',     emoji:'💻', img:SPRITES.laptop,     base:1.5 },
-  { id:'chair',      name:'Chair',      emoji:'🪑', img:SPRITES.chair,      base:1.3 },
-  { id:'chicken',    name:'Rubber Chicken', emoji:'🍗', img:SPRITES.chicken, base:0.5 },
-  { id:'mug',        name:'Mug',        emoji:'☕', img:SPRITES.mug,        base:1.5 },
-  { id:'stapler',    name:'Stapler',    emoji:'📎', img:SPRITES.stapler,    base:1.0 },
-  { id:'shoe',       name:'Shoe',       emoji:'👟', img:SPRITES.shoe,       base:0.5 },
-  { id:'book',       name:'Book',       emoji:'📚', img:SPRITES.book,       base:0.7 },
-  { id:'sandwich',   name:'Sandwich',   emoji:'🥪', img:SPRITES.sandwich,   base:0.2 },
-  { id:'banana',     name:'Banana',     emoji:'🍌', img:SPRITES.banana,     base:0.3 },
-  { id:'balloon',    name:'Balloon',    emoji:'🎈', img:SPRITES.balloon,    base:0.1 },
-  { id:'pencil',     name:'Pencil',     emoji:'✏️', img:SPRITES.pencil,     base:0.2 },
-  { id:'wrench',     name:'Wrench',     emoji:'🔧', img:E('🔧'),            base:2.1 },
-  { id:'hammer',     name:'Hammer',     emoji:'🔨', img:E('🔨'),            base:2.3 },
-  { id:'pizza',      name:'Pizza',      emoji:'🍕', img:E('🍕'),            base:0.5 },
-  { id:'phone',      name:'Phone',      emoji:'📱', img:E('📱'),            base:1.5 },
-  { id:'bottle',     name:'Bottle',     emoji:'🍾', img:E('🍾'),            base:0.8 }
+  { id:'toaster', name:'Toaster', emoji:'🍞', img:SPRITES.toaster, base:1.1 },
+  { id:'pan', name:'Pan', emoji:'🍳', img:SPRITES.pan, base:2.2 },
+  { id:'bat', name:'Bat', emoji:'⚾', img:SPRITES.bat, base:1.9 },
+  { id:'pot', name:'Plant Pot', emoji:'🪴', img:SPRITES.pot, base:1.5 },
+  { id:'laptop', name:'Laptop', emoji:'💻', img:SPRITES.laptop, base:1.5 },
+  { id:'chair', name:'Chair', emoji:'🪑', img:SPRITES.chair, base:1.3 },
+  { id:'chicken', name:'Rubber Chicken', emoji:'🍗', img:SPRITES.chicken, base:0.5 },
+  { id:'mug', name:'Mug', emoji:'☕', img:SPRITES.mug, base:1.5 },
+  { id:'stapler', name:'Stapler', emoji:'📎', img:SPRITES.stapler, base:1.0 },
+  { id:'shoe', name:'Shoe', emoji:'👟', img:SPRITES.shoe, base:0.5 },
+  { id:'book', name:'Book', emoji:'📚', img:SPRITES.book, base:0.7 },
+  { id:'sandwich', name:'Sandwich', emoji:'🥪', img:SPRITES.sandwich, base:0.2 },
+  { id:'banana', name:'Banana', emoji:'🍌', img:SPRITES.banana, base:0.3 },
+  { id:'balloon', name:'Balloon', emoji:'🎈', img:SPRITES.balloon, base:0.1 },
+  { id:'pencil', name:'Pencil', emoji:'✏️', img:SPRITES.pencil, base:0.2 },
+  { id:'wrench', name:'Wrench', emoji:'🔧', img:E('🔧'), base:2.1 },
+  { id:'hammer', name:'Hammer', emoji:'🔨', img:E('🔨'), base:2.3 },
+  { id:'pizza', name:'Pizza', emoji:'🍕', img:E('🍕'), base:0.5 },
+  { id:'phone', name:'Phone', emoji:'📱', img:E('📱'), base:1.5 },
+  { id:'bottle', name:'Bottle', emoji:'🍾', img:E('🍾'), base:0.8 }
 ];
-
 const MULT = { head:2.0, torso:0.9, arm:0.7, leg:0.7, foot:0.5 };
 const WIN_HP = 15;
 const ROUND_SECS = 30;
-
-/* ================================
-    DOM
-==================================*/
 const stage = document.getElementById('stage'), ctx = stage.getContext('2d');
 const itemsEl = document.getElementById('items');
 const ovl = document.getElementById('ovl'), ovlTitle = document.getElementById('ovlTitle'), ovlMsg = document.getElementById('ovlMsg');
 document.getElementById('again').onclick = () => resetGame();
-document.getElementById('share').onclick = () => {
-  const txt = `Karen folded: ${Math.floor(hp)}/${WIN_HP} HP in ${elapsedText()}`;
-  navigator.clipboard?.writeText(txt);
-};
-
-/* Build inventory (one of each) */
-let armed = null;
-let inventory = new Map();
+let armed = null, inventory = new Map();
 function buildInventory(){
   itemsEl.innerHTML = '';
   inventory.clear();
@@ -196,7 +135,7 @@ function buildInventory(){
     const img = new Image(); img.src = it.img;
     const btn = document.createElement('button');
     btn.className = 'itemBtn'; 
-   btn.innerHTML = `<span class="emoji">${it.emoji}</span>`;
+    btn.innerHTML = `<span class="emoji">${it.emoji}</span>`;
     btn.onclick = ()=>{
       if(btn.classList.contains('used')) return;
       armed = it.id;
@@ -208,51 +147,40 @@ function buildInventory(){
   });
 }
 buildInventory();
-
-/* ================================
-    Canvas sizing
-==================================*/
-let W, H; const GROUND = () => H-30;
+let W, H; 
+const GROUND = () => H-30;
+const isMobile = () => window.innerWidth <= 768;
 function resize(){
   const r = stage.getBoundingClientRect();
   W = stage.width = Math.floor(r.width);
   H = stage.height = Math.floor(r.height);
 }
 addEventListener('resize', resize); resize();
-
-/* ================================
-    Game state & physics
-==================================*/
 const GRAV = 1600;
-const SLING = { x: 140, y: () => GROUND()-60, maxPull: 230, bandTension: 0.04 }; 
-
+const SLING = { 
+  x: () => isMobile() ? 80 : 140, 
+  y: () => GROUND()-60, 
+  maxPull: 230
+}; 
 const kar = {
-  startX: () => 300,
-  endX: () => W - 150,
+  startX: () => isMobile() ? 200 : 300,
+  endX: () => W - (isMobile() ? 100 : 150),
   x: () => {
-    if(!startTime || over) {
-      return kar.startX();
-    }
+    if(!startTime || over) return kar.startX();
     const elapsed = (performance.now() - startTime) / 1000;
     const progress = Math.min(1, elapsed / ROUND_SECS);
     return kar.startX() + (kar.endX() - kar.startX()) * progress;
   },
-  y: () => GROUND()-220, 
-  w: 140, 
-  h: 240, 
+  y: () => GROUND()-(isMobile() ? 180 : 220),
+  w: isMobile() ? 110 : 140, 
+  h: isMobile() ? 190 : 240, 
   img: (()=>{ const i=new Image(); i.src=KAREN; return i; })()
 };
-
-let projectiles = [];
-let hp = 0, startTime = null, over = false;
-
+let projectiles = [], hp = 0, startTime = null, over = false;
 function elapsedText(){
   if(!startTime) return '0.0s';
-  const s = Math.max(0, (performance.now()-startTime)/1000);
-  return s.toFixed(1)+'s';
+  return Math.max(0, (performance.now()-startTime)/1000).toFixed(1)+'s';
 }
-
-/* Input: drag to aim */
 let dragging=false, dragStart=null, dragNow=null, dragTimeStart=null; 
 function toPos(e){ const r=stage.getBoundingClientRect(); const p=e.touches?e.touches[0]:e; return {x:p.clientX-r.left, y:p.clientY-r.top}; }
 function onDown(e){ 
@@ -266,95 +194,70 @@ function onUp(e){
   if(!dragging) return;
   dragging=false;
   if(!armed) return;
-  
-  const pullX = dragStart.x - dragNow.x;
-  const pullY = dragStart.y - dragNow.y;
+  const pullX = dragStart.x - dragNow.x, pullY = dragStart.y - dragNow.y;
   const pullMag = Math.hypot(pullX, pullY);
-  
   if(pullMag < 10) return;
-
   const holdDurationSeconds = Math.max(0, (performance.now() - dragTimeStart) / 1000);
   const cappedDuration = Math.min(5, holdDurationSeconds); 
-  
-  const MIN_SPEED = 1000;
-  const MAX_ADDED_SPEED = 10000; 
-  
+  const MIN_SPEED = 1000, MAX_ADDED_SPEED = 10000; 
   const timePowerFactor = (Math.pow(3, cappedDuration) - 1) / (Math.pow(3, 5) - 1);
   const addedSpeed = MAX_ADDED_SPEED * timePowerFactor; 
-  
   const cappedPullMag = Math.min(SLING.maxPull, pullMag);
   const distanceFactor = cappedPullMag / SLING.maxPull;
-  
   const speed = MIN_SPEED + (addedSpeed * distanceFactor);
-
   const angle = Math.atan2(pullY, pullX);
-  const vx = Math.cos(angle) * speed;
-  const vy = Math.sin(angle) * speed; 
-
+  const vx = Math.cos(angle) * speed, vy = Math.sin(angle) * speed; 
   const slot = inventory.get(armed);
+  const projSize = isMobile() ? 0.8 : 1;
   projectiles.push({
     id: armed, img: slot.img, base: slot.meta.base,
-    x: SLING.x, y: SLING.y(), vx, vy, r: 16 + Math.min(14, slot.meta.base*5),
+    x: SLING.x(), y: SLING.y(), vx, vy, 
+    r: (16 + Math.min(14, slot.meta.base*5)) * projSize,
     alive: true, hit: false, rot: Math.random()*Math.PI
   });
-
   slot.used = true; slot.btn.classList.remove('active'); slot.btn.classList.add('used'); armed = null;
-
-  if(!startTime){ startTime = performance.now(); }
+  if(!startTime) startTime = performance.now();
 }
 stage.addEventListener('mousedown',onDown); stage.addEventListener('mousemove',onMove); addEventListener('mouseup',onUp);
 stage.addEventListener('touchstart',onDown,{passive:false}); stage.addEventListener('touchmove',onMove,{passive:false}); stage.addEventListener('touchend',onUp);
-
-/* ================================
-    Collision
-==================================*/
 function karHitboxes(){
-  const x = kar.x(), y = kar.y();  return {
-    head: {x:x+50, y:y+18, w:40, h:40, mult:MULT.head},
-    torso:{x:x+28, y:y+60, w:84, h:90, mult:MULT.torso},
-    armL: {x:x+12, y:y+72, w:20, h:70, mult:MULT.arm},
-    armR: {x:x+108,y:y+72, w:20, h:70, mult:MULT.arm},
-    legL: {x:x+52, y:y+150,w:22, h:70, mult:MULT.leg},
-    legR: {x:x+82, y:y+150,w:22, h:70, mult:MULT.leg},
-    foot:{x:x+52, y:y+222,w:52, h:16, mult:MULT.foot}
+  const x = kar.x(), y = kar.y();
+  const scale = isMobile() ? 0.79 : 1;
+  return {
+    head: {x:x+50*scale, y:y+18*scale, w:40*scale, h:40*scale, mult:MULT.head},
+    torso:{x:x+28*scale, y:y+60*scale, w:84*scale, h:90*scale, mult:MULT.torso},
+    armL: {x:x+12*scale, y:y+72*scale, w:20*scale, h:70*scale, mult:MULT.arm},
+    armR: {x:x+108*scale,y:y+72*scale, w:20*scale, h:70*scale, mult:MULT.arm},
+    legL: {x:x+52*scale, y:y+150*scale,w:22*scale, h:70*scale, mult:MULT.leg},
+    legR: {x:x+82*scale, y:y+150*scale,w:22*scale, h:70*scale, mult:MULT.leg},
+    foot:{x:x+52*scale, y:y+222*scale,w:52*scale, h:16*scale, mult:MULT.foot}
   };
 }
 function circleHitsBox(cx,cy,r,B){
   const nx = Math.max(B.x, Math.min(cx, B.x+B.w));
   const ny = Math.max(B.y, Math.min(cy, B.y+B.h));
   const dx = cx-nx, dy = cy-ny;
-  if(dx*dx + dy*dy <= r*r) return {cx:nx, cy:ny, mult:B.mult};
-  return null;
+  return (dx*dx + dy*dy <= r*r) ? {cx:nx, cy:ny, mult:B.mult} : null;
 }
-
-/* ================================
-    Loop
-==================================*/
 let last = performance.now();
 requestAnimationFrame(tick);
-
 function tick(){
   const t = performance.now(), dt = Math.min(0.033, (t-last)/1000); last = t;
-
   update(dt);
   draw();
-
   if(!over) requestAnimationFrame(tick);
 }
-
 function update(dt){
   if(startTime && !over){
     const rem = Math.max(0, ROUND_SECS - (performance.now()-startTime)/1000);
     if(rem <= 0){ finish(false); return; }
   }
-
   for(const p of projectiles){
     if(!p.alive) continue;
     p.vy += GRAV * dt;
     p.x  += p.vx * dt;
     p.y  += p.vy * dt;
     p.rot += 2*dt;
-
     if(p.y + p.r > GROUND()){
       p.y = GROUND() - p.r;
       p.vy *= -0.38;
@@ -362,8 +265,7 @@ function update(dt){
       if(Math.abs(p.vy) < 60) p.alive = false;
     }
     if(p.x < -80 || p.x > W+80 || p.y < -120) p.alive=false;
-
-   if(!p.hit && p.x > 200){
+    if(!p.hit){
       const boxes = karHitboxes();
       const hit = circleHitsBox(p.x,p.y,p.r,boxes.head) || circleHitsBox(p.x,p.y,p.r,boxes.torso) ||
                    circleHitsBox(p.x,p.y,p.r,boxes.armL) || circleHitsBox(p.x,p.y,p.r,boxes.armR) ||
@@ -380,28 +282,20 @@ function update(dt){
   }
   projectiles = projectiles.filter(p=>p.alive);
 }
-
 function addHP(g, x, y){
   hp = Math.min(WIN_HP, +(hp + g).toFixed(2));
   const fl = document.createElement('div');
   fl.textContent = '+'+g.toFixed(2);
   const r = stage.getBoundingClientRect();
-  fl.style.position='fixed'; fl.style.left=(r.left+x)+'px'; fl.style.top=(r.top+y)+'px';
-  fl.style.transform='translate(-50%,-50%)'; fl.style.fontWeight='900';
-  fl.style.color = g>=2 ? '#00c853' : (g>=1 ? '#ff6f00' : '#ff4081');
-  fl.style.textShadow='0 2px 4px rgba(0,0,0,0.3)'; fl.style.pointerEvents='none'; fl.style.zIndex='100';
-  fl.style.transition='all .7s ease-out'; fl.style.opacity='1'; fl.style.fontSize='18px';
+  fl.style.cssText = `position:fixed;left:${r.left+x}px;top:${r.top+y}px;transform:translate(-50%,-50%);font-weight:900;color:${g>=2?'#00c853':(g>=1?'#ff6f00':'#ff4081')};text-shadow:0 2px 4px rgba(0,0,0,0.3);pointer-events:none;z-index:100;transition:all .7s ease-out;opacity:1;font-size:18px`;
   document.body.appendChild(fl);
   requestAnimationFrame(()=>{ fl.style.opacity='0'; fl.style.top=(r.top+y-80)+'px'; });
   setTimeout(()=>fl.remove(), 800);
-
   if(hp >= WIN_HP) finish(true);
 }
-
 function finish(win){
   over = true;
   ovl.style.display='flex';
-  
   if(win) {
     ovlTitle.textContent = 'Karen Neutralized!';
     ovlMsg.innerHTML = `Karen <b>took the L</b> in <b>${elapsedText()}</b>.`;
@@ -411,11 +305,10 @@ function finish(win){
         ovlMsg.innerHTML = `Karen <b>took the L</b> just as time expired! (${elapsedText()})`;
      } else {
         ovlTitle.textContent = 'Karen Found the Manager! 😠';
-        ovlMsg.innerHTML = `Time ran out. You only reached <b>${Math.floor(hp)}/${WIN_HP} HP</b>. Try harder next time!`;
+        ovlMsg.innerHTML = `Time ran out. You only reached <b>${hp.toFixed(1)}/${WIN_HP} HP</b>. Try harder next time!`;
      }
   }
 }
-
 function resetGame(){
   hp = 0; startTime = null; over = false;
   projectiles = [];
@@ -424,70 +317,57 @@ function resetGame(){
   last = performance.now();
   requestAnimationFrame(tick);
 }
-
-/* ================================
-    Rendering
-==================================*/
 function draw(){
   ctx.clearRect(0,0,W,H);
-  
-  // ground
   ctx.fillStyle = '#a8d5ba'; 
   ctx.fillRect(0,GROUND(),W,H-GROUND());
   ctx.fillStyle = '#8bc9a3'; 
   for(let i=0;i<W;i+=28) ctx.fillRect(i,GROUND(),14,5);
-
-  // slingshot Y-frame
-  const slingY = SLING.y();
-  ctx.save();
-  
+  ctx.fillStyle = 'rgba(0,0,0,0.15)';
+  ctx.fillRect(10, 10, 100, 36);
+  ctx.fillStyle = 'rgba(255,255,255,0.95)';
+  ctx.fillRect(12, 12, 96, 32);
+  ctx.fillStyle = '#1a1f33';
+  ctx.font = 'bold 18px system-ui';
+  ctx.fillText(`${hp.toFixed(1)}/${WIN_HP}`, 20, 34);
+  const slingX = SLING.x(), slingY = SLING.y();
+  const scale = isMobile() ? 0.8 : 1;
   ctx.fillStyle='#8b5a3c';
   ctx.strokeStyle='#5d3a1a';
   ctx.lineWidth=2;
-  
-  // Main handle
-  ctx.fillRect(SLING.x+12, GROUND()-65, 8, 70);
-  ctx.strokeRect(SLING.x+12, GROUND()-65, 8, 70);
-  
-  // Left fork
+  ctx.fillRect(slingX+12*scale, GROUND()-65*scale, 8*scale, 70*scale);
+  ctx.strokeRect(slingX+12*scale, GROUND()-65*scale, 8*scale, 70*scale);
   ctx.beginPath();
-  ctx.moveTo(SLING.x+16, GROUND()-65);
-  ctx.lineTo(SLING.x+4, GROUND()-90);
-  ctx.lineTo(SLING.x+10, GROUND()-92);
-  ctx.lineTo(SLING.x+18, GROUND()-68);
+  ctx.moveTo(slingX+16*scale, GROUND()-65*scale);
+  ctx.lineTo(slingX+4*scale, GROUND()-90*scale);
+  ctx.lineTo(slingX+10*scale, GROUND()-92*scale);
+  ctx.lineTo(slingX+18*scale, GROUND()-68*scale);
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
-  
-  // Right fork
   ctx.beginPath();
-  ctx.moveTo(SLING.x+16, GROUND()-65);
-  ctx.lineTo(SLING.x+28, GROUND()-90);
-  ctx.lineTo(SLING.x+22, GROUND()-92);
-  ctx.lineTo(SLING.x+14, GROUND()-68);
+  ctx.moveTo(slingX+16*scale, GROUND()-65*scale);
+  ctx.lineTo(slingX+28*scale, GROUND()-90*scale);
+  ctx.lineTo(slingX+22*scale, GROUND()-92*scale);
+  ctx.lineTo(slingX+14*scale, GROUND()-68*scale);
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
-  
-  // Fork tips
   ctx.fillStyle='#5d3a1a';
   ctx.beginPath();
-  ctx.arc(SLING.x+7, GROUND()-91, 4, 0, Math.PI*2);
+  ctx.arc(slingX+7*scale, GROUND()-91*scale, 4*scale, 0, Math.PI*2);
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(SLING.x+25, GROUND()-91, 4, 0, Math.PI*2);
+  ctx.arc(slingX+25*scale, GROUND()-91*scale, 4*scale, 0, Math.PI*2);
   ctx.fill();
-  
-  // Elastic band
   if(dragging){
     ctx.strokeStyle = '#ff4081'; 
     ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.moveTo(SLING.x+7, GROUND()-91);
+    ctx.moveTo(slingX+7*scale, GROUND()-91*scale);
     ctx.lineTo(dragNow.x, dragNow.y);
-    ctx.lineTo(SLING.x+25, GROUND()-91);
+    ctx.lineTo(slingX+25*scale, GROUND()-91*scale);
     ctx.stroke();
-    
     ctx.fillStyle='#8d6e63';
     ctx.fillRect(dragNow.x-8, dragNow.y-6, 16, 12);
     ctx.strokeStyle='#5d4037';
@@ -497,43 +377,30 @@ function draw(){
     ctx.strokeStyle = '#ff4081'; 
     ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.moveTo(SLING.x+7, GROUND()-91);
-    ctx.lineTo(SLING.x+16, GROUND()-88);
-    ctx.lineTo(SLING.x+25, GROUND()-91);
+    ctx.moveTo(slingX+7*scale, GROUND()-91*scale);
+    ctx.lineTo(slingX+16*scale, GROUND()-88*scale);
+    ctx.lineTo(slingX+25*scale, GROUND()-91*scale);
     ctx.stroke();
-    
     ctx.fillStyle='#8d6e63';
-    ctx.fillRect(SLING.x+8, GROUND()-93, 16, 10);
+    ctx.fillRect(slingX+8*scale, GROUND()-93*scale, 16*scale, 10*scale);
     ctx.strokeStyle='#5d4037';
     ctx.lineWidth=2;
-    ctx.strokeRect(SLING.x+8, GROUND()-93, 16, 10);
+    ctx.strokeRect(slingX+8*scale, GROUND()-93*scale, 16*scale, 10*scale);
   }
-  ctx.restore();
-
-  // Karen sprite 
   const karenX = kar.x();
   ctx.drawImage(kar.img, karenX, kar.y(), kar.w, kar.h);
-
-  // Karen HUD
   const hudX = karenX+20, hudY = kar.y()-18;
-  ctx.save();
   ctx.fillStyle = 'rgba(0,0,0,.2)'; 
   ctx.fillRect(hudX-2, hudY-10, 120+4, 10+4);
-  
   const pct = hp/WIN_HP;
   ctx.fillStyle = pct>=1 ? '#00c853' : (pct>0.6 ? '#ff6f00' : '#ff4081');
   ctx.fillRect(hudX, hudY-8, Math.max(0,120*pct), 8);
-  
   ctx.strokeStyle = 'rgba(138,100,255,0.6)'; 
   ctx.strokeRect(hudX, hudY-8, 120, 8);
-  
   let tLeft = startTime ? Math.max(0, ROUND_SECS - (performance.now()-startTime)/1000) : ROUND_SECS;
   ctx.fillStyle = '#1a1f33'; 
   ctx.font = 'bold 12px system-ui, sans-serif';
   ctx.fillText((tLeft).toFixed(1)+'s', hudX+126, hudY);
-  ctx.restore();
-
-  // projectiles
   for(const p of projectiles){
     ctx.save();
     ctx.translate(p.x, p.y);
@@ -546,9 +413,3 @@ function draw(){
 </script>
 </body>
 </html>
-
-
-
-
-
-
