@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>BodyTheKaren</title>
 <style>
 :root{--ink:#1a1f33;--line:#8a64ff66;--panel1:#ffffff;--panel2:#f8f5ff;--accent:#ff4081;--accent2:#ab47bc;--ok:#00c853;--warn:#ff6f00;}
-html,body{height:100%;margin:0;background:linear-gradient(180deg,#ffd4e5,#e8c5ff,#c5d9ff);color:var(--ink);font-family:system-ui,Segoe UI,Arial,sans-serif;}
-.wrap{max-width:1100px;margin:0 auto;padding:20px 14px 10px 14px;} 
+html,body{height:100%;margin:0;background:linear-gradient(180deg,#ffd4e5,#e8c5ff,#c5d9ff);color:var(--ink);font-family:system-ui,Segoe UI,Arial,sans-serif;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.wrap{width:100%;max-width:375px;aspect-ratio:9/16;margin:0 auto;padding:20px 14px 10px 14px;display:flex;flex-direction:column;} 
 .hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px} 
 .panel{background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(240,240,255,0.9));border:2px solid rgba(138,100,255,0.3);border-radius:20px;padding:12px 16px;box-shadow:0 8px 24px rgba(138,100,255,0.15), 0 0 0 1px rgba(255,255,255,0.5) inset;}
 .title{font-weight:900;letter-spacing:.3px}
@@ -18,19 +18,8 @@ html,body{height:100%;margin:0;background:linear-gradient(180deg,#ffd4e5,#e8c5ff
 .itemBtn.active{outline:3px solid var(--accent);background:linear-gradient(135deg,rgba(255,100,200,0.15),rgba(138,100,255,0.15));box-shadow:0 0 20px var(--accent), 0 6px 20px rgba(255,64,129,0.4);transform:scale(1.05);} 
 .itemBtn.used{opacity:.5;filter:grayscale(0.8);cursor:not-allowed;box-shadow:none;transform:scale(0.95);}
 .foot{opacity:.8;font-size:12px;margin-top:6px}
-.stageWrap{position:relative;border-radius:24px;border:3px solid rgba(138,100,255,0.4);overflow:hidden;background:linear-gradient(180deg, #a8e6ff 0%, #dbb7ff 50%, #ffc7e8 100%);box-shadow:0 12px 40px rgba(138,100,255,0.3), 0 0 0 1px rgba(255,255,255,0.5) inset;} 
-canvas{display:block;width:100%;height:340px}
-@media (max-width: 768px) {
-  .wrap{padding:10px 8px;}
-  .hud{gap:8px;}
-  .panel{padding:8px 12px;border-radius:16px;}
-  .title{font-size:18px;}
-  .items{gap:6px;}
-  .itemBtn{padding:8px;border-radius:12px;}
-  .itemBtn .emoji{font-size:28px;}
-  canvas{height:400px;}
-  .foot{font-size:10px;}
-}
+.stageWrap{position:relative;border-radius:24px;border:3px solid rgba(138,100,255,0.4);overflow:hidden;background:linear-gradient(180deg, #a8e6ff 0%, #dbb7ff 50%, #ffc7e8 100%);box-shadow:0 12px 40px rgba(138,100,255,0.3), 0 0 0 1px rgba(255,255,255,0.5) inset;flex:1;display:flex;} 
+canvas{display:block;width:100%;flex:1;min-height:0;}
 .overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.3);backdrop-filter:blur(2px)}
 .overlay .box{background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(248,245,255,0.98));border:3px solid rgba(138,100,255,0.5);border-radius:24px;padding:24px 28px;max-width:560px;text-align:center;box-shadow:0 20px 60px rgba(138,100,255,0.4), 0 0 0 1px rgba(255,255,255,0.8) inset;}
 .overlay h2{margin:0 0 8px}
@@ -82,22 +71,7 @@ const SPRITES = {
   chicken: E(`🍗`), mug: E(`☕`), stapler: E(`📎`), shoe: E(`👟`), book: E(`📚`), 
   sandwich: E(`🥪`), banana: E(`🍌`), balloon: E(`🎈`), pencil: E(`✏️`) 
 };
-const KAREN = S(`<svg xmlns="http://www.w3.org/2000/svg" width="140" height="240" viewBox="0 0 140 240">
-  <defs>
-    <linearGradient id="sk" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#ffe0a8"/><stop offset="1" stop-color="#ffc98c"/></linearGradient>
-    <linearGradient id="cl" x1="0" x2="1"><stop stop-color="#fefefe"/><stop offset="1" stop-color="#e3e6ee"/></linearGradient>
-    <linearGradient id="pants" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#4a90e2"/><stop offset="1" stop-color="#357abd"/></linearGradient>
-  </defs>
-  <rect x="52" y="150" width="18" height="70" rx="8" fill="url(#pants)" stroke="#2a5a8d" stroke-width="3"/>
-  <rect x="78" y="150" width="18" height="70" rx="8" fill="url(#pants)" stroke="#2a5a8d" stroke-width="3"/>
-  <path d="M40 80 L100 80 L120 150 L20 150 Z" fill="url(#cl)" stroke="#a9b3c4" stroke-width="3"/>
-  <rect x="18" y="90" width="18" height="60" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
-  <rect x="104" y="90" width="18" height="60" rx="8" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
-  <rect x="118" y="112" width="10" height="18" rx="2" fill="#333"/>
-  <circle cx="70" cy="56" r="22" fill="url(#sk)" stroke="#d8a36a" stroke-width="3"/>
-  <circle cx="62" cy="52" r="3" fill="#333"/><circle cx="78" cy="52" r="3" fill="#333"/>
-  <rect x="62" y="62" width="16" height="4" rx="2" fill="#333"/>
-</svg>`);
+const KAREN = 'https://raw.githubusercontent.com/LogicNerds/BodyKaren/main/assets/karen.png';
 const ITEMS = [
   { id:'toaster', name:'Toaster', emoji:'🍞', img:SPRITES.toaster, base:0.2 },
   { id:'pan', name:'Pan', emoji:'🍳', img:SPRITES.pan, base:2.2 },
@@ -149,7 +123,7 @@ function buildInventory(){
 buildInventory();
 let W, H; 
 const GROUND = () => H-30;
-const isMobile = () => window.innerWidth <= 768;
+const isMobile = () => true;
 function resize(){
   const r = stage.getBoundingClientRect();
   W = stage.width = Math.floor(r.width);
@@ -158,22 +132,22 @@ function resize(){
 addEventListener('resize', resize); resize();
 const GRAV = 1600;
 const SLING = { 
-  x: () => isMobile() ? 80 : 140, 
+  x: () => W * 0.21, 
   y: () => GROUND()-60, 
   maxPull: 230
 }; 
 const kar = {
-  startX: () => isMobile() ? 200 : 300,
-  endX: () => W - (isMobile() ? 100 : 150),
+  startX: () => W * 0.4,
+  endX: () => W * 0.85,
   x: () => {
     if(!startTime || over) return kar.startX();
     const elapsed = (performance.now() - startTime) / 1000;
     const progress = Math.min(1, elapsed / ROUND_SECS);
     return kar.startX() + (kar.endX() - kar.startX()) * progress;
   },
-  y: () => GROUND()-(isMobile() ? 180 : 220),
-  w: isMobile() ? 110 : 140, 
-  h: isMobile() ? 190 : 240, 
+  y: () => GROUND() - 150,
+  w: 175, 
+  h: 190, 
   img: (()=>{ const i=new Image(); i.src=KAREN; return i; })()
 };
 let projectiles = [], hp = 0, startTime = null, over = false;
@@ -416,6 +390,3 @@ function draw(){
 </script>
 </body>
 </html>
-
-
-
