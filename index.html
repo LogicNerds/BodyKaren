@@ -145,9 +145,9 @@ const kar = {
     const progress = Math.min(1, elapsed / ROUND_SECS);
     return kar.startX() + (kar.endX() - kar.startX()) * progress;
   },
-  y: () => GROUND() - 150,
-  w: 175, 
-  h: 190, 
+  y: () => GROUND() - 160,
+  w: 200, 
+  h: 200,
   img: (()=>{ const i=new Image(); i.src=KAREN; return i; })()
 };
 let projectiles = [], hp = 0, startTime = null, over = false;
@@ -199,15 +199,14 @@ stage.addEventListener('mousedown',onDown); stage.addEventListener('mousemove',o
 stage.addEventListener('touchstart',onDown,{passive:false}); stage.addEventListener('touchmove',onMove,{passive:false}); stage.addEventListener('touchend',onUp);
 function karHitboxes(){
   const x = kar.x(), y = kar.y();
-  const scale = isMobile() ? 0.79 : 1;
   return {
-    head: {x:x+50*scale, y:y+18*scale, w:40*scale, h:40*scale, mult:MULT.head},
-    torso:{x:x+28*scale, y:y+60*scale, w:84*scale, h:90*scale, mult:MULT.torso},
-    armL: {x:x+12*scale, y:y+72*scale, w:20*scale, h:70*scale, mult:MULT.arm},
-    armR: {x:x+108*scale,y:y+72*scale, w:20*scale, h:70*scale, mult:MULT.arm},
-    legL: {x:x+52*scale, y:y+150*scale,w:22*scale, h:70*scale, mult:MULT.leg},
-    legR: {x:x+82*scale, y:y+150*scale,w:22*scale, h:70*scale, mult:MULT.leg},
-    foot:{x:x+52*scale, y:y+222*scale,w:52*scale, h:16*scale, mult:MULT.foot}
+    head: {x:x+60, y:y+30, w:80, h:70, mult:MULT.head},
+    torso:{x:x+55, y:y+100, w:90, h:80, mult:MULT.torso},
+    armL: {x:x+35, y:y+100, w:25, h:85, mult:MULT.arm},
+    armR: {x:x+140, y:y+100, w:25, h:85, mult:MULT.arm},
+    legL: {x:x+65, y:y+145, w:30, h:55, mult:MULT.leg},
+    legR: {x:x+105, y:y+145, w:30, h:55, mult:MULT.leg},
+    foot:{x:x+65, y:y+185, w:70, h:15, mult:MULT.foot}
   };
 }
 function circleHitsBox(cx,cy,r,B){
