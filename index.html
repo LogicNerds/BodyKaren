@@ -200,13 +200,13 @@ stage.addEventListener('touchstart',onDown,{passive:false}); stage.addEventListe
 function karHitboxes(){
   const x = kar.x(), y = kar.y();
   return {
-    head: {x:x+60, y:y+30, w:80, h:70, mult:MULT.head},
-    torso:{x:x+55, y:y+100, w:90, h:80, mult:MULT.torso},
-    armL: {x:x+35, y:y+100, w:25, h:85, mult:MULT.arm},
-    armR: {x:x+140, y:y+100, w:25, h:85, mult:MULT.arm},
-    legL: {x:x+65, y:y+145, w:30, h:55, mult:MULT.leg},
-    legR: {x:x+105, y:y+145, w:30, h:55, mult:MULT.leg},
-    foot:{x:x+65, y:y+185, w:70, h:15, mult:MULT.foot}
+    head: {x:x+100, y:y+30, w:80, h:70, mult:MULT.head},
+    torso:{x:x+95, y:y+100, w:90, h:80, mult:MULT.torso},
+    armL: {x:x+75, y:y+100, w:25, h:85, mult:MULT.arm},
+    armR: {x:x+180, y:y+100, w:25, h:85, mult:MULT.arm},
+    legL: {x:x+105, y:y+145, w:30, h:55, mult:MULT.leg},
+    legR: {x:x+145, y:y+145, w:30, h:55, mult:MULT.leg},
+    foot:{x:x+105, y:y+185, w:70, h:15, mult:MULT.foot}
   };
 }
 function circleHitsBox(cx,cy,r,B){
